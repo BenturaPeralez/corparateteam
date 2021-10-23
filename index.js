@@ -20,4 +20,11 @@ inquirer.prompt([
         type: 'input',
         message: 'What is your manager\'s office number?',
         name: 'installation',
-    },])
+    },
+
+    { type: 'list',
+        message: "Choose the next type of employee",
+        choices: ['Employee', 'Engineer', 'Intern'],
+        name: 'role'
+    },
+    ,]) 
