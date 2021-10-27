@@ -187,7 +187,8 @@ const addEmployee = () => {
         if (confirmAddEmployee) {
             return addEmployee(teamArray); 
         } else {
-            return teamArray;
+            console.log(teamArray);
+            generateHTML()
         }
     })
 
@@ -197,13 +198,25 @@ const addEmployee = () => {
 addManager()
   .then(addEmployee)
   .then(teamArray => {
-    return generateHTML(teamArray);
+    return generateHTML();
   })
   .catch(err => {
  console.log(err);
   });
 
   function generateHTML(teamArray) {
+      let cards = ""
+      for (let i=0; i < teamArray.length; i++) {
+          cards +=
+      `<div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+      <h5 class="card-title">${teamArray[i].name}</h5>
+      <p class="card-text">${teamArray[i].role}, </p>
+      <a href="#" class="btn btn-primary"> Go somewhere</a>
+      </div>
+      </div>`
+
     const html = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -213,11 +226,21 @@ addManager()
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Team Profile</title>
     </head>
-    
+
     <body>
         <nav class="navbar navbar-dark bg-dark mb-5">
             <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
         </nav>
-        <div class="container">
-            <div class="row">`;
-    }
+        <div class = "container">
+        ${cards}
+        </div>
+    <body/>
+    <html/>`
+      
+    fs.writeFileSync("index.html", html, (err) => {
+        if(err){
+            console.log(err)
+        }else {
+            console.log("sucess")
+        }
+        })
