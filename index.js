@@ -207,7 +207,7 @@ addManager()
   function generateHTML(teamArray) {
       let cards = ""
       for (let i=0; i < teamArray.length; i++) {
-          cards +=
+          cards += 
       `<div class="card" style="width: 18rem;">
       <img class="card-img-top" src="..." alt="Card image cap">
       <div class="card-body">
@@ -215,7 +215,7 @@ addManager()
       <p class="card-text">${teamArray[i].role}, </p>
       <a href="#" class="btn btn-primary"> Go somewhere</a>
       </div>
-      </div>`
+      </div>`}
 
     const html = `<!DOCTYPE html>
     <html lang="en">
@@ -240,7 +240,7 @@ addManager()
     fs.writeFileSync("index.html", html, (err) => {
         if(err){
             console.log(err)
-        }else {
-            console.log("sucess")
         }
-        })
+        else {
+            console.log("sucess")
+        }})}
