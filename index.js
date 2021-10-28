@@ -198,21 +198,29 @@ const addEmployee = () => {
 addManager()
   .then(addEmployee)
   .then(teamArray => {
-    return generateHTML();
+    return generateHTML(teamArray);
   })
   .catch(err => {
  console.log(err);
   });
 
-  function generateHTML(teamArray) {
+  function generateHTML() {
+
       let cards = ""
+      console.log(teamArray)
       for (let i=0; i < teamArray.length; i++) {
+          let gitHub = ''
+          if (teamArray[i].getRole()==='Engineer'){
+             gitHub =`<a href='https://github.com/${teamArray[i].githubUsername}' class="card-text">${teamArray[i].githubUsername}</a>`
+          }
           cards += 
       `<div class="card" style="width: 18rem;">
       <img class="card-img-top" src="..." alt="Card image cap">
       <div class="card-body">
       <h5 class="card-title">${teamArray[i].name}</h5>
-      <p class="card-text">${teamArray[i].role}, </p>
+      <p class="card-text">${teamArray[i].getRole()}</p>
+      <p class="card-text">${teamArray[i].getEmail()}</p>
+      ${gitHub}
       <a href="#" class="btn btn-primary"> Go somewhere</a>
       </div>
       </div>`}
